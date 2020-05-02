@@ -9,16 +9,15 @@ ALTER PROC [dbo].[usp_DailyChecker]
 @ResultHTML INT = 0
 AS
 
-/* 
+
+/*--------------------------------------------------------------------------
+Written by Yunus UYANIK AND Buğrahan BOL(%4), yunusuyanik.com
 Version 1.1
 Date : 02.01.2020
-Written by : 
-Yunus UYANIK AND Buğrahan Bol(%4).
-Silikon Akademi
+(c) 2020, yunusuyanik.com. All rights reserved.
 
-www.silikonakademi.com
-www.yunusuyanik.com
-
+For more scripts and sample code, check out 
+www.yunusuyanik.com - www.silikonakademi.com
 
 MIT License
 
@@ -41,8 +40,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-*/
+---------------------------------------------------------------------------*/
 
 
 
