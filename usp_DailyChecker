@@ -1546,6 +1546,7 @@ CREATE TABLE #uns_ResultHTML (Ordernaryus INT,HTMLValue NVARCHAR(MAX))
 
 	IF (SELECT COUNT(1) FROM ##uns_DailyChecker WHERE CheckGroup='Server Configuration' AND CheckSubGroup='Non-Default')>0
 	BEGIN
+	INSERT INTO #uns_ResultHTML (Ordernaryus,HTMLValue)
 	SELECT 6,'
 	<br><h4>SQL Server Konfigürasyonu - Varsayılan Dışındakiler </h4>
 	<p> Aşağıdaki SQL Server ayarları varsayılan ayarlardan farklı olduğu gözlemlenmiştir. Ayarların kontrol edilmesi gerekmektedir.</p>
