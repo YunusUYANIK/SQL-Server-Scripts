@@ -1,4 +1,8 @@
+
 --ADR rollback scenario
+
+USE master
+GO
 
 CREATE DATABASE [TestADR]
 ALTER DATABASE [TestADR] SET COMPATIBILITY_LEVEL = 150
@@ -19,7 +23,12 @@ GO
 
 ROLLBACK;
 
+
+
 --Without ADR rollback scenario
+
+USE master
+GO
 
 CREATE DATABASE [TestWithoutADR]
 ALTER DATABASE [TestWithoutADR] SET COMPATIBILITY_LEVEL = 150
@@ -27,8 +36,6 @@ GO
 
 USE [TestWithoutADR]
 GO
-
-ALTER DATABASE TestADR SET ACCELERATED_DATABASE_RECOVERY = OFF;
 
 SELECT name,is_accelerated_database_recovery_on FROM sys.databases WHERE name='TestWithoutADR';
 
