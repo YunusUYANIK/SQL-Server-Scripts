@@ -33,7 +33,9 @@ SOFTWARE.
 
 
 
+
 SELECT 
+    local_database_name DatabaseName,
     database_size_bytes/1024/1024 AS TotalDBSize_MB, 
     transferred_size_bytes/1024/1024 AS TotalTransferSize_MB, 
     database_size_bytes/1024/1024-transferred_size_bytes/1024/1024 AS TotalTransferRemainingSize_MB, 
