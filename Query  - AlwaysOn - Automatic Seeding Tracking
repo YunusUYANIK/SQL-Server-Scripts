@@ -33,7 +33,6 @@ SOFTWARE.
 
 
 
-
 SELECT 
      database_size_bytes/1024/1024 AS TotalDBSize_MB,
      transferred_size_bytes/1024/1024 AS TotalTransferSize_MB,
@@ -42,13 +41,11 @@ SELECT
      (DATEPART(MINUTE, DATEADD(HOUR,-3,GETDATE())-has.start_time) * 60) +
      (DATEPART(SECOND, DATEADD(HOUR,-3,GETDATE())-has.start_time)) AS TotalTransferSeconds,
      ((CONVERT(DECIMAL(18,2),transferred_size_bytes/1024/1024))/(CONVERT(DECIMAL(18,2),database_size_bytes/1024/1024)))*100 AS TransferingPercent,
-     (((DATEPART(HOUR, DATEADD(HOUR,-3,GETDATE())-has.start_time) * 3600) +
+     (database_size_bytes/1024/1024-transferred_size_bytes/1024/1024)/(
+	 (transferred_size_bytes/1024/1024)/
+	 ((DATEPART(HOUR, DATEADD(HOUR,-3,GETDATE())-has.start_time) * 3600) +
      (DATEPART(MINUTE, DATEADD(HOUR,-3,GETDATE())-has.start_time) * 60) +
-     (DATEPART(SECOND, DATEADD(HOUR,-3,GETDATE())-has.start_time)))/
-     ((((CONVERT(DECIMAL(18,2),(transferred_size_bytes/1024/1024))) / 
-     ((CONVERT(DECIMAL(18,2),database_size_bytes/1024/1024))-(CONVERT(DECIMAL(18,2),transferred_size_bytes/1024/1024))))*100)))*
-     (100-((((CONVERT(DECIMAL(18,2),(transferred_size_bytes/1024/1024))) / 
-     ((CONVERT(DECIMAL(18,2),database_size_bytes/1024/1024))-(CONVERT(DECIMAL(18,2),transferred_size_bytes/1024/1024))))*100))) AS TransferingRemainingSeconds,
+     (DATEPART(SECOND, DATEADD(HOUR,-3,GETDATE())-has.start_time)))) AS TransferingRemainingSeconds,
      DATEADD(HOUR,-3,GETDATE())-has.start_time AS TotalTransferTime
 FROM sys.dm_hadr_physical_seeding_stats hpss
 JOIN sys.dm_hadr_automatic_seeding has ON has.operation_id=hpss.remote_physical_seeding_id
